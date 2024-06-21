@@ -1,0 +1,13 @@
+#!/bin/bash -l
+
+#$ -P sparkpit
+#$ -l h_rt=50:00:00
+#$ -l gpus=1
+#$ -N batch_processed_evaluate
+#$ -m eabs
+
+module load miniconda academic-ml/spring-2024
+
+conda activate spring-2024-pyt
+
+python processed_evaluation.py

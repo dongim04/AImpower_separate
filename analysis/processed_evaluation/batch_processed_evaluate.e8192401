@@ -1,0 +1,19 @@
+-------------------------------------------------------------------------------
+To activate the conda environment in a batch script or in a terminal run the
+following command. For interactive sessions in SCC OnDemand place this command
+in the "Pre-Launch Command" field.
+
+To load the PyTorch-based environment run:
+
+    conda activate spring-2024-pyt
+    
+To load the Tensorflow-based environment run:
+
+    conda activate spring-2024-tf
+
+
+For information on using or cloning this conda environment visit:
+
+https://www.bu.edu/tech/support/research/software-and-programming/common-languages/python/python-ml/academic-machine-learning-environment
+-------------------------------------------------------------------------------
+
