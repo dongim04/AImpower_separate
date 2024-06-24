@@ -118,42 +118,42 @@ def generate_evaluation_df(modelname):
 
     df_merged = pd.read_csv(f'processed_{modelname}_evaluation.csv', index_col=0)
 
-    # WER = []
-    # CER = []
-    # BLEU = []
-    # WordNet_first = []
-    # WordNet_all = []
-    # GloVe = []
+    WER = []
+    CER = []
+    BLEU = []
+    WordNet_first = []
+    WordNet_all = []
+    GloVe = []
     BERT = []
     Sent2Vec = []
     for i in range(df_merged.shape[0]):
         reference = df_merged['ground_truth_cleaned'].iloc[i]
         hypothesis = df_merged[modelname].iloc[i]
         if not isinstance(reference, str) or not isinstance(hypothesis, str):
-            # WER.append(np.nan)
-            # CER.append(np.nan)
-            # BLEU.append(np.nan)
-            # WordNet_first.append(np.nan)
-            # WordNet_all.append(np.nan)
-            # GloVe.append(np.nan)
+            WER.append(np.nan)
+            CER.append(np.nan)
+            BLEU.append(np.nan)
+            WordNet_first.append(np.nan)
+            WordNet_all.append(np.nan)
+            GloVe.append(np.nan)
             BERT.append(np.nan)
             Sent2Vec.append(np.nan)
         else:
-            # WER.append(jiwer.wer(' '.join(jieba.lcut(reference)), ' '.join(jieba.lcut(hypothesis))))
-            # CER.append(jiwer.cer(reference, hypothesis))
-            # BLEU.append(sentence_bleu([jieba.lcut(reference)], jieba.lcut(hypothesis)))
-            # WordNet_first.append(calculate_wordnet_first(reference, hypothesis))
-            # WordNet_all.append(calculate_wordnet_all(reference, hypothesis))
-            # GloVe.append(calculate_glove(reference, hypothesis))
+            WER.append(jiwer.wer(' '.join(jieba.lcut(reference)), ' '.join(jieba.lcut(hypothesis))))
+            CER.append(jiwer.cer(reference, hypothesis))
+            BLEU.append(sentence_bleu([jieba.lcut(reference)], jieba.lcut(hypothesis)))
+            WordNet_first.append(calculate_wordnet_first(reference, hypothesis))
+            WordNet_all.append(calculate_wordnet_all(reference, hypothesis))
+            GloVe.append(calculate_glove(reference, hypothesis))
             BERT.append(calculate_bert(reference, hypothesis))
             Sent2Vec.append(calculate_sent2vec(reference, hypothesis))
         
-    # df_merged['WER'] = WER
-    # df_merged['CER'] = CER
-    # df_merged['BLEU'] = BLEU
-    # df_merged['WordNet_first'] = WordNet_first
-    # df_merged['WordNet_all'] = WordNet_all
-    # df_merged['GloVe'] = GloVe
+    df_merged['WER'] = WER
+    df_merged['CER'] = CER
+    df_merged['BLEU'] = BLEU
+    df_merged['WordNet_first'] = WordNet_first
+    df_merged['WordNet_all'] = WordNet_all
+    df_merged['GloVe'] = GloVe
     df_merged['BERT'] = BERT
     df_merged['Sent2Vec'] = Sent2Vec
 
@@ -164,7 +164,6 @@ def generate_evaluation_df(modelname):
 
 
 modelnames = ['Whisper_tiny', 'Whisper_tiny_cleaned', 'Whisper_large', 'Whisper_large_cleaned', 'GoogleCloud', 'GoogleCloud_cleaned', 'Wav2vec', 'Wav2vec_cleaned', 'WeNet', 'WeNet_cleaned', 'Azure', 'Azure_cleaned']
-# modelnames = ['Azure', 'Azure_cleaned']
 for modelname in modelnames:
     generate_evaluation_df(modelname)
     print(f'{modelname} success!')
